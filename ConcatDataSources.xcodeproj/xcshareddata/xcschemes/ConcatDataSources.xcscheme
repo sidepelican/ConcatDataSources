@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "9999"
+   LastUpgradeVersion = "1160"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "ConcatDataSources::ConcatDataSources"
+               BlueprintIdentifier = "372359E624D59F2400DE0A8C"
                BuildableName = "ConcatDataSources.framework"
                BlueprintName = "ConcatDataSources"
                ReferencedContainer = "container:ConcatDataSources.xcodeproj">
@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "ConcatDataSources::ConcatDataSourcesTests"
+               BlueprintIdentifier = "372359EF24D59F2400DE0A8C"
                BuildableName = "ConcatDataSourcesTests.xctest"
                BlueprintName = "ConcatDataSourcesTests"
                ReferencedContainer = "container:ConcatDataSources.xcodeproj">
@@ -57,6 +57,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "372359E624D59F2400DE0A8C"
+            BuildableName = "ConcatDataSources.framework"
+            BlueprintName = "ConcatDataSources"
+            ReferencedContainer = "container:ConcatDataSources.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
