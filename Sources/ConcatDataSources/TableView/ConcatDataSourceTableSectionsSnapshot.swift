@@ -1,14 +1,16 @@
 import Foundation
 
-public struct ConcatDataSourceDiffableSectionSnapshot<ItemIdentifierType: Hashable> {
-    var reloadItems: Set<ItemIdentifierType> = []
+public struct ConcatDataSourceTableSectionsSnapshot {
+    public typealias ItemIdentifierType = TableViewSectionDataSource
+
+    var reloadItems: [ItemIdentifierType] = []
     var elements: [ItemIdentifierType]
 
     public init() {
         elements = []
     }
 
-    public init(_ snapshot: ConcatDataSourceDiffableSectionSnapshot<ItemIdentifierType>) {
+    public init(_ snapshot: Self) {
         elements = snapshot.elements
     }
 
@@ -21,21 +23,21 @@ public struct ConcatDataSourceDiffableSectionSnapshot<ItemIdentifierType: Hashab
     }
 
     public mutating func insert(_ items: [ItemIdentifierType], after item: ItemIdentifierType) {
-        guard let afterIndex = elements.firstIndex(of: item) else {
+        guard let afterIndex = elements.firstIndex(where: { $0 === item }) else {
             fatalError()
         }
         elements.insert(contentsOf: items, at: afterIndex + 1)
     }
 
     public mutating func insert(_ items: [ItemIdentifierType], before item: ItemIdentifierType) {
-        guard let beforeIndex = elements.firstIndex(of: item) else {
+        guard let beforeIndex = elements.firstIndex(where: { $0 === item }) else {
             fatalError()
         }
         elements.insert(contentsOf: items, at: beforeIndex)
     }
 
     public mutating func delete(_ items: [ItemIdentifierType]) {
-        elements.removeAll(where: { items.contains($0) })
+        elements.removeAll(where: { element in items.contains(where: { $0 === element }) })
     }
 
     public mutating func deleteAll() {
@@ -43,31 +45,31 @@ public struct ConcatDataSourceDiffableSectionSnapshot<ItemIdentifierType: Hashab
     }
 
     public mutating func moveItem(_ item: ItemIdentifierType, afterItem: ItemIdentifierType) {
-        elements.removeAll { $0 == item }
-        guard let afterIndex = elements.firstIndex(of: item) else {
+        elements.removeAll { $0 === item }
+        guard let afterIndex = elements.firstIndex(where: { $0 === item }) else {
             fatalError()
         }
         elements.insert(item, at: afterIndex + 1)
     }
 
     public mutating func moveItem(_ item: ItemIdentifierType, beforeItem: ItemIdentifierType) {
-        elements.removeAll { $0 == item }
-        guard let beforeIndex = elements.firstIndex(of: item) else {
+        elements.removeAll { $0 === item }
+        guard let beforeIndex = elements.firstIndex(where: { $0 === item }) else {
             fatalError()
         }
         elements.insert(item, at: beforeIndex)
     }
 
     public mutating func reloadItems(_ items: [ItemIdentifierType]) {
-        reloadItems.formUnion(items)
+        reloadItems.append(contentsOf: items)
     }
 
     public func contains(_ item: ItemIdentifierType) -> Bool {
-        elements.contains(item)
+        elements.contains { $0 === item }
     }
 
     public func index(of item: ItemIdentifierType) -> Int? {
-        elements.firstIndex(of: item)
+        elements.firstIndex(where: { $0 === item })
     }
 
     public var items: [ItemIdentifierType] {

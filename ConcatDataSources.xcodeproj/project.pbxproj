@@ -15,6 +15,11 @@
 		37235A1E24D5A0B700DE0A8C /* CollectionViewStaticSectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37235A1724D5A0B700DE0A8C /* CollectionViewStaticSectionDataSource.swift */; };
 		37235A1F24D5A0B700DE0A8C /* CollectionViewItemSelectableSectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37235A1824D5A0B700DE0A8C /* CollectionViewItemSelectableSectionDataSource.swift */; };
 		37235A2524D5A0C700DE0A8C /* ConcatDataSourcesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37235A2124D5A0C000DE0A8C /* ConcatDataSourcesTests.swift */; };
+		378A64E424D6B69F00C4701E /* TableViewConcatDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378A64E324D6B69F00C4701E /* TableViewConcatDataSource.swift */; };
+		378A64E624D6B6F200C4701E /* TableViewSectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378A64E524D6B6F200C4701E /* TableViewSectionDataSource.swift */; };
+		378A64E924D6BAA900C4701E /* ConcatDataSourceCollectionSectionsSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378A64E824D6BAA900C4701E /* ConcatDataSourceCollectionSectionsSnapshot.swift */; };
+		378A64EC24D6BB4100C4701E /* ConcatDataSourceTableSectionsSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378A64EB24D6BB4100C4701E /* ConcatDataSourceTableSectionsSnapshot.swift */; };
+		378A64EE24D6BEA200C4701E /* TableViewDiffableSectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378A64ED24D6BEA200C4701E /* TableViewDiffableSectionDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +44,11 @@
 		37235A1824D5A0B700DE0A8C /* CollectionViewItemSelectableSectionDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewItemSelectableSectionDataSource.swift; sourceTree = "<group>"; };
 		37235A2124D5A0C000DE0A8C /* ConcatDataSourcesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcatDataSourcesTests.swift; sourceTree = "<group>"; };
 		37235A2224D5A0C000DE0A8C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		378A64E324D6B69F00C4701E /* TableViewConcatDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewConcatDataSource.swift; sourceTree = "<group>"; };
+		378A64E524D6B6F200C4701E /* TableViewSectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewSectionDataSource.swift; sourceTree = "<group>"; };
+		378A64E824D6BAA900C4701E /* ConcatDataSourceCollectionSectionsSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcatDataSourceCollectionSectionsSnapshot.swift; sourceTree = "<group>"; };
+		378A64EB24D6BB4100C4701E /* ConcatDataSourceTableSectionsSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcatDataSourceTableSectionsSnapshot.swift; sourceTree = "<group>"; };
+		378A64ED24D6BEA200C4701E /* TableViewDiffableSectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDiffableSectionDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,10 +91,9 @@
 		37235A1024D5A0B700DE0A8C /* ConcatDataSources */ = {
 			isa = PBXGroup;
 			children = (
-				37235A1124D5A0B700DE0A8C /* CollectionViewConcatDataSource.swift */,
 				37235A1224D5A0B700DE0A8C /* ConcatDataSourceDiffableSectionSnapshot.swift */,
-				37235A1324D5A0B700DE0A8C /* CollectionViewDiffableSectionDataSource.swift */,
-				37235A1424D5A0B700DE0A8C /* CollectionViewSectionDataSource.swift */,
+				378A64E724D6BA1B00C4701E /* CollectionView */,
+				378A64EA24D6BB2700C4701E /* TableView */,
 				37235A1624D5A0B700DE0A8C /* Utility */,
 				37235A1524D5A0B700DE0A8C /* Info.plist */,
 			);
@@ -109,6 +118,28 @@
 			);
 			name = ConcatDataSourcesTests;
 			path = Tests/ConcatDataSourcesTests;
+			sourceTree = "<group>";
+		};
+		378A64E724D6BA1B00C4701E /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				37235A1124D5A0B700DE0A8C /* CollectionViewConcatDataSource.swift */,
+				37235A1424D5A0B700DE0A8C /* CollectionViewSectionDataSource.swift */,
+				37235A1324D5A0B700DE0A8C /* CollectionViewDiffableSectionDataSource.swift */,
+				378A64E824D6BAA900C4701E /* ConcatDataSourceCollectionSectionsSnapshot.swift */,
+			);
+			path = CollectionView;
+			sourceTree = "<group>";
+		};
+		378A64EA24D6BB2700C4701E /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				378A64E324D6B69F00C4701E /* TableViewConcatDataSource.swift */,
+				378A64E524D6B6F200C4701E /* TableViewSectionDataSource.swift */,
+				378A64ED24D6BEA200C4701E /* TableViewDiffableSectionDataSource.swift */,
+				378A64EB24D6BB4100C4701E /* ConcatDataSourceTableSectionsSnapshot.swift */,
+			);
+			path = TableView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,10 +250,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				378A64E424D6B69F00C4701E /* TableViewConcatDataSource.swift in Sources */,
 				37235A1F24D5A0B700DE0A8C /* CollectionViewItemSelectableSectionDataSource.swift in Sources */,
 				37235A1B24D5A0B700DE0A8C /* CollectionViewDiffableSectionDataSource.swift in Sources */,
 				37235A1924D5A0B700DE0A8C /* CollectionViewConcatDataSource.swift in Sources */,
+				378A64E624D6B6F200C4701E /* TableViewSectionDataSource.swift in Sources */,
+				378A64EE24D6BEA200C4701E /* TableViewDiffableSectionDataSource.swift in Sources */,
+				378A64E924D6BAA900C4701E /* ConcatDataSourceCollectionSectionsSnapshot.swift in Sources */,
 				37235A1A24D5A0B700DE0A8C /* ConcatDataSourceDiffableSectionSnapshot.swift in Sources */,
+				378A64EC24D6BB4100C4701E /* ConcatDataSourceTableSectionsSnapshot.swift in Sources */,
 				37235A1C24D5A0B700DE0A8C /* CollectionViewSectionDataSource.swift in Sources */,
 				37235A1E24D5A0B700DE0A8C /* CollectionViewStaticSectionDataSource.swift in Sources */,
 			);

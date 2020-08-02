@@ -11,7 +11,7 @@ open class CollectionViewConcatDataSource: NSObject, UICollectionViewDataSource 
     }
 
     open func apply(
-        _ snapshot: ConcatDataSourceDataSourceSnapshot,
+        _ snapshot: ConcatDataSourceCollectionSectionsSnapshot,
         animatingDifferences: Bool = true,
         completion: (() -> Void)? = nil
     ) {
@@ -74,13 +74,13 @@ open class CollectionViewConcatDataSource: NSObject, UICollectionViewDataSource 
         }
     }
 
-    public func snapshot() -> ConcatDataSourceDataSourceSnapshot {
-        var snapshot = ConcatDataSourceDataSourceSnapshot()
+    public func snapshot() -> ConcatDataSourceCollectionSectionsSnapshot {
+        var snapshot = ConcatDataSourceCollectionSectionsSnapshot()
         snapshot.append(children)
         return snapshot
     }
 
-    public func emptySnapshot() -> ConcatDataSourceDataSourceSnapshot {
+    public func emptySnapshot() -> ConcatDataSourceCollectionSectionsSnapshot {
         .init()
     }
 
