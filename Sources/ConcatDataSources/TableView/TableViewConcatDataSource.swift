@@ -32,7 +32,7 @@ open class TableViewConcatDataSource: NSObject, UITableViewDataSource {
             CATransaction.commit()
         }
 
-        guard #available(iOS 13, *) else {
+        guard #available(iOS 13, *), let _ = tableView.window else {
             // diffing not supported.
             children = newElements
             tableView.reloadData()
@@ -90,7 +90,7 @@ open class TableViewConcatDataSource: NSObject, UITableViewDataSource {
         children.firstIndex(where: { $0 === sectionDataSource })
     }
 
-    public func dataSource(_ tableView: UITableView, forSection section: Int) -> TableViewSectionDataSource {
+    public func dataSource(forSection section: Int) -> TableViewSectionDataSource {
         children[section]
     }
 
@@ -101,47 +101,47 @@ open class TableViewConcatDataSource: NSObject, UITableViewDataSource {
     }
 
     open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let childDataSource = dataSource(tableView, forSection: section)
+        let childDataSource = dataSource(forSection: section)
         return childDataSource.tableView(tableView, numberOfRowsInSection: 0)
     }
 
     open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let childDataSource = dataSource(tableView, forSection: indexPath.section)
+        let childDataSource = dataSource(forSection: indexPath.section)
         let childIndexPath = IndexPath(row: indexPath.row, section: 0)
         return childDataSource.tableView(tableView, cellForRowAt: childIndexPath)
     }
 
     open func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let childDataSource = dataSource(tableView, forSection: section)
+        let childDataSource = dataSource(forSection: section)
         return childDataSource.tableView(tableView, titleForHeaderInSection: 0)
     }
 
     open func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        let childDataSource = dataSource(tableView, forSection: section)
+        let childDataSource = dataSource(forSection: section)
         return childDataSource.tableView(tableView, titleForFooterInSection: 0)
     }
 
     open func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        let childDataSource = dataSource(tableView, forSection: indexPath.section)
+        let childDataSource = dataSource(forSection: indexPath.section)
         let childIndexPath = IndexPath(row: indexPath.row, section: 0)
         return childDataSource.tableView(tableView, canEditRowAt: childIndexPath)
     }
 
     open func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        let childDataSource = dataSource(tableView, forSection: indexPath.section)
+        let childDataSource = dataSource(forSection: indexPath.section)
         let childIndexPath = IndexPath(row: indexPath.row, section: 0)
         return childDataSource.tableView(tableView, canMoveRowAt: childIndexPath)
     }
 
     open func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        let childDataSource = dataSource(tableView, forSection: indexPath.section)
+        let childDataSource = dataSource(forSection: indexPath.section)
         let childIndexPath = IndexPath(row: indexPath.row, section: 0)
         return childDataSource.tableView(tableView, commit: editingStyle, forRowAt: childIndexPath)
     }
 
     open func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let sourceChildDataSource = dataSource(tableView, forSection: sourceIndexPath.section)
-        let dstChildDataSource = dataSource(tableView, forSection: destinationIndexPath.section)
+        let sourceChildDataSource = dataSource(forSection: sourceIndexPath.section)
+        let dstChildDataSource = dataSource(forSection: destinationIndexPath.section)
         guard sourceChildDataSource === dstChildDataSource else { return }
 
         sourceChildDataSource.tableView(

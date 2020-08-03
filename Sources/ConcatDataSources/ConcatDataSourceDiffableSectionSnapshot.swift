@@ -43,16 +43,18 @@ public struct ConcatDataSourceDiffableSectionSnapshot<ItemIdentifierType: Hashab
     }
 
     public mutating func moveItem(_ item: ItemIdentifierType, afterItem: ItemIdentifierType) {
+        if item == afterItem { return }
         elements.removeAll { $0 == item }
-        guard let afterIndex = elements.firstIndex(of: item) else {
+        guard let afterIndex = elements.firstIndex(of: afterItem) else {
             fatalError()
         }
         elements.insert(item, at: afterIndex + 1)
     }
 
     public mutating func moveItem(_ item: ItemIdentifierType, beforeItem: ItemIdentifierType) {
+        if item == beforeItem { return }
         elements.removeAll { $0 == item }
-        guard let beforeIndex = elements.firstIndex(of: item) else {
+        guard let beforeIndex = elements.firstIndex(of: beforeItem) else {
             fatalError()
         }
         elements.insert(item, at: beforeIndex)

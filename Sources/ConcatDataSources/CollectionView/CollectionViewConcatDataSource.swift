@@ -30,7 +30,7 @@ open class CollectionViewConcatDataSource: NSObject, UICollectionViewDataSource 
             CATransaction.commit()
         }
 
-        guard #available(iOS 13, *) else {
+        guard #available(iOS 13, *), let _ = collectionView.window else {
             // diffing not supported.
             children = newElements
             collectionView.reloadData()
@@ -88,7 +88,7 @@ open class CollectionViewConcatDataSource: NSObject, UICollectionViewDataSource 
         children.firstIndex(where: { $0 === sectionDataSource })
     }
 
-    public func dataSource(_ collectionView: UICollectionView, forSection section: Int) -> CollectionViewSectionDataSource {
+    public func dataSource(forSection section: Int) -> CollectionViewSectionDataSource {
         children[section]
     }
 
@@ -99,31 +99,31 @@ open class CollectionViewConcatDataSource: NSObject, UICollectionViewDataSource 
     }
 
     open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let childDataSource = dataSource(collectionView, forSection: section)
+        let childDataSource = dataSource(forSection: section)
         return childDataSource.collectionView(collectionView, numberOfItemsInSection: 0)
     }
 
     open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let childDataSource = dataSource(collectionView, forSection: indexPath.section)
+        let childDataSource = dataSource(forSection: indexPath.section)
         let childIndexPath = IndexPath(item: indexPath.item, section: 0)
         return childDataSource.collectionView(collectionView, cellForItemAt: childIndexPath)
     }
 
     open func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let childDataSource = dataSource(collectionView, forSection: indexPath.section)
+        let childDataSource = dataSource(forSection: indexPath.section)
         let childIndexPath = IndexPath(item: indexPath.item, section: 0)
         return childDataSource.collectionView(collectionView, viewForSupplementaryElementOfKind: kind, at: childIndexPath) ?? { fatalError("TODO: error message") }()
     }
 
     open func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
-        let childDataSource = dataSource(collectionView, forSection: indexPath.section)
+        let childDataSource = dataSource(forSection: indexPath.section)
         let childIndexPath = IndexPath(item: indexPath.item, section: 0)
         return childDataSource.collectionView(collectionView, canMoveItemAt: childIndexPath) ?? false
     }
 
     open func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let sourceChildDataSource = dataSource(collectionView, forSection: sourceIndexPath.section)
-        let dstChildDataSource = dataSource(collectionView, forSection: destinationIndexPath.section)
+        let sourceChildDataSource = dataSource(forSection: sourceIndexPath.section)
+        let dstChildDataSource = dataSource(forSection: destinationIndexPath.section)
         guard sourceChildDataSource === dstChildDataSource else { return }
 
         sourceChildDataSource.collectionView(

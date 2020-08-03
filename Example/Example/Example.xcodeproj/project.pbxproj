@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		378A64C324D6AC6A00C4701E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378A64C224D6AC6A00C4701E /* AppDelegate.swift */; };
 		378A64C724D6AC6A00C4701E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378A64C624D6AC6A00C4701E /* ViewController.swift */; };
-		378A64CA24D6AC6A00C4701E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 378A64C824D6AC6A00C4701E /* Main.storyboard */; };
 		378A64CC24D6AC6B00C4701E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 378A64CB24D6AC6B00C4701E /* Assets.xcassets */; };
 		378A64CF24D6AC6B00C4701E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 378A64CD24D6AC6B00C4701E /* LaunchScreen.storyboard */; };
 		378A64E024D6AD3600C4701E /* ConcatDataSources.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 378A64DC24D6AD2000C4701E /* ConcatDataSources.framework */; };
 		378A64E124D6AD3600C4701E /* ConcatDataSources.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 378A64DC24D6AD2000C4701E /* ConcatDataSources.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		37A425AA24D836ED00C5268C /* EmojisCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A425A924D836ED00C5268C /* EmojisCollectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,11 +51,11 @@
 		378A64BF24D6AC6A00C4701E /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		378A64C224D6AC6A00C4701E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		378A64C624D6AC6A00C4701E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		378A64C924D6AC6A00C4701E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		378A64CB24D6AC6B00C4701E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		378A64CE24D6AC6B00C4701E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		378A64D024D6AC6B00C4701E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		378A64D624D6AD2000C4701E /* ConcatDataSources.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ConcatDataSources.xcodeproj; path = ../../ConcatDataSources.xcodeproj; sourceTree = "<group>"; };
+		37A425A924D836ED00C5268C /* EmojisCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojisCollectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,7 +93,7 @@
 			children = (
 				378A64C224D6AC6A00C4701E /* AppDelegate.swift */,
 				378A64C624D6AC6A00C4701E /* ViewController.swift */,
-				378A64C824D6AC6A00C4701E /* Main.storyboard */,
+				37A425A924D836ED00C5268C /* EmojisCollectionViewController.swift */,
 				378A64CB24D6AC6B00C4701E /* Assets.xcassets */,
 				378A64CD24D6AC6B00C4701E /* LaunchScreen.storyboard */,
 				378A64D024D6AC6B00C4701E /* Info.plist */,
@@ -201,7 +201,6 @@
 			files = (
 				378A64CF24D6AC6B00C4701E /* LaunchScreen.storyboard in Resources */,
 				378A64CC24D6AC6B00C4701E /* Assets.xcassets in Resources */,
-				378A64CA24D6AC6A00C4701E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,20 +213,13 @@
 			files = (
 				378A64C724D6AC6A00C4701E /* ViewController.swift in Sources */,
 				378A64C324D6AC6A00C4701E /* AppDelegate.swift in Sources */,
+				37A425AA24D836ED00C5268C /* EmojisCollectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		378A64C824D6AC6A00C4701E /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				378A64C924D6AC6A00C4701E /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		378A64CD24D6AC6B00C4701E /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -289,7 +281,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -343,7 +335,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

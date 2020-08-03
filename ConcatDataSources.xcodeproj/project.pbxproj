@@ -20,6 +20,7 @@
 		378A64E924D6BAA900C4701E /* ConcatDataSourceCollectionSectionsSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378A64E824D6BAA900C4701E /* ConcatDataSourceCollectionSectionsSnapshot.swift */; };
 		378A64EC24D6BB4100C4701E /* ConcatDataSourceTableSectionsSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378A64EB24D6BB4100C4701E /* ConcatDataSourceTableSectionsSnapshot.swift */; };
 		378A64EE24D6BEA200C4701E /* TableViewDiffableSectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378A64ED24D6BEA200C4701E /* TableViewDiffableSectionDataSource.swift */; };
+		378A64F024D6F6DC00C4701E /* TableViewItemSelectableSectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378A64EF24D6F6DC00C4701E /* TableViewItemSelectableSectionDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		378A64E824D6BAA900C4701E /* ConcatDataSourceCollectionSectionsSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcatDataSourceCollectionSectionsSnapshot.swift; sourceTree = "<group>"; };
 		378A64EB24D6BB4100C4701E /* ConcatDataSourceTableSectionsSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcatDataSourceTableSectionsSnapshot.swift; sourceTree = "<group>"; };
 		378A64ED24D6BEA200C4701E /* TableViewDiffableSectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDiffableSectionDataSource.swift; sourceTree = "<group>"; };
+		378A64EF24D6F6DC00C4701E /* TableViewItemSelectableSectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewItemSelectableSectionDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 			children = (
 				37235A1724D5A0B700DE0A8C /* CollectionViewStaticSectionDataSource.swift */,
 				37235A1824D5A0B700DE0A8C /* CollectionViewItemSelectableSectionDataSource.swift */,
+				378A64EF24D6F6DC00C4701E /* TableViewItemSelectableSectionDataSource.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 				378A64EC24D6BB4100C4701E /* ConcatDataSourceTableSectionsSnapshot.swift in Sources */,
 				37235A1C24D5A0B700DE0A8C /* CollectionViewSectionDataSource.swift in Sources */,
 				37235A1E24D5A0B700DE0A8C /* CollectionViewStaticSectionDataSource.swift in Sources */,
+				378A64F024D6F6DC00C4701E /* TableViewItemSelectableSectionDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

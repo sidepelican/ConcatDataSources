@@ -45,16 +45,18 @@ public struct ConcatDataSourceCollectionSectionsSnapshot {
     }
 
     public mutating func moveItem(_ item: ItemIdentifierType, afterItem: ItemIdentifierType) {
+        if item === afterItem { return }
         elements.removeAll { $0 === item }
-        guard let afterIndex = elements.firstIndex(where: { $0 === item }) else {
+        guard let afterIndex = elements.firstIndex(where: { $0 === afterItem }) else {
             fatalError()
         }
         elements.insert(item, at: afterIndex + 1)
     }
 
     public mutating func moveItem(_ item: ItemIdentifierType, beforeItem: ItemIdentifierType) {
+        if item === beforeItem { return }
         elements.removeAll { $0 === item }
-        guard let beforeIndex = elements.firstIndex(where: { $0 === item }) else {
+        guard let beforeIndex = elements.firstIndex(where: { $0 === beforeItem }) else {
             fatalError()
         }
         elements.insert(item, at: beforeIndex)
