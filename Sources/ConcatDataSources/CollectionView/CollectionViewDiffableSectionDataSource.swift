@@ -40,9 +40,9 @@ open class CollectionViewDiffableSectionDataSource<ItemIdentifierType: Hashable>
         }
 
         if !snapshot.reloadItems.isEmpty {
-            let reloadedItems = IndexSet(snapshot.reloadItems.compactMap { elements.firstIndex(of: $0) })
+            let reloadedItems = snapshot.reloadItems.compactMap { elements.firstIndex(of: $0) }
             collectionView.performBatchUpdates({
-                collectionView.reloadSections(reloadedItems)
+                collectionView.reloadItems(at: reloadedItems.map { IndexPath(item: $0, section: 0) })
             })
         }
 

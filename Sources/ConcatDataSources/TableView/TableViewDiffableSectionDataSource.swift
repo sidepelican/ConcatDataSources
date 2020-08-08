@@ -42,9 +42,9 @@ open class TableViewDiffableSectionDataSource<ItemIdentifierType: Hashable>: NSO
         }
 
         if !snapshot.reloadItems.isEmpty {
-            let reloadedItems = IndexSet(snapshot.reloadItems.compactMap { elements.firstIndex(of: $0) })
+            let reloadedItems = snapshot.reloadItems.compactMap { elements.firstIndex(of: $0) }
             tableView.performBatchUpdates({
-                tableView.reloadSections(reloadedItems, with: defaultRowAnimation)
+                tableView.reloadRows(at: reloadedItems.map { IndexPath(item: $0, section: 0) }, with: defaultRowAnimation)
             })
         }
 
