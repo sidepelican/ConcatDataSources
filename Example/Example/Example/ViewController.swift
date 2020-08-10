@@ -41,7 +41,7 @@ class ViewController: UIViewController, UITableViewDelegate {
             cell.textLabel?.text = item.rawValue
             return cell
         }
-        dataSource.didSelectRow = { [weak self] item in
+        dataSource.didSelectItem = { [weak self] item in
             switch item {
             case .emojisCollection:
                 let vc = EmojisCollectionViewController()

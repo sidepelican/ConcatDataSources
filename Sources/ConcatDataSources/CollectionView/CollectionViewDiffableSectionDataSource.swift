@@ -42,7 +42,7 @@ open class CollectionViewDiffableSectionDataSource<ItemIdentifierType: Hashable>
         if !snapshot.reloadItems.isEmpty {
             let reloadedItems = snapshot.reloadItems.compactMap { elements.firstIndex(of: $0) }
             collectionView.performBatchUpdates({
-                collectionView.reloadItems(at: reloadedItems.map { IndexPath(item: $0, section: 0) })
+                collectionView.reloadItems(at: reloadedItems.map { IndexPath(item: $0, section: sectionIndex) })
             })
         }
 
@@ -73,6 +73,8 @@ open class CollectionViewDiffableSectionDataSource<ItemIdentifierType: Hashable>
                     collectionView.moveItem(at: IndexPath(item: from, section: sectionIndex), to: IndexPath(item: to, section: sectionIndex))
                 }
             })
+        } else {
+            elements = newElements
         }
     }
 
