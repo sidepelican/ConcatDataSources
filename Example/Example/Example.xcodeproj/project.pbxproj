@@ -14,6 +14,7 @@
 		378A64E024D6AD3600C4701E /* ConcatDataSources.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 378A64DC24D6AD2000C4701E /* ConcatDataSources.framework */; };
 		378A64E124D6AD3600C4701E /* ConcatDataSources.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 378A64DC24D6AD2000C4701E /* ConcatDataSources.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		37A425AA24D836ED00C5268C /* EmojisCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A425A924D836ED00C5268C /* EmojisCollectionViewController.swift */; };
+		37EA914E24E1844D00F8ED11 /* TicketTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EA914D24E1844D00F8ED11 /* TicketTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		378A64D024D6AC6B00C4701E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		378A64D624D6AD2000C4701E /* ConcatDataSources.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ConcatDataSources.xcodeproj; path = ../../ConcatDataSources.xcodeproj; sourceTree = "<group>"; };
 		37A425A924D836ED00C5268C /* EmojisCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojisCollectionViewController.swift; sourceTree = "<group>"; };
+		37EA914D24E1844D00F8ED11 /* TicketTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 				378A64C224D6AC6A00C4701E /* AppDelegate.swift */,
 				378A64C624D6AC6A00C4701E /* ViewController.swift */,
 				37A425A924D836ED00C5268C /* EmojisCollectionViewController.swift */,
+				37EA914D24E1844D00F8ED11 /* TicketTableViewController.swift */,
 				378A64CB24D6AC6B00C4701E /* Assets.xcassets */,
 				378A64CD24D6AC6B00C4701E /* LaunchScreen.storyboard */,
 				378A64D024D6AC6B00C4701E /* Info.plist */,
@@ -212,6 +215,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				378A64C724D6AC6A00C4701E /* ViewController.swift in Sources */,
+				37EA914E24E1844D00F8ED11 /* TicketTableViewController.swift in Sources */,
 				378A64C324D6AC6A00C4701E /* AppDelegate.swift in Sources */,
 				37A425AA24D836ED00C5268C /* EmojisCollectionViewController.swift in Sources */,
 			);

@@ -33,6 +33,7 @@ class ViewController: UIViewController, UITableViewDelegate {
 
     enum Example: String, Hashable, CaseIterable {
         case emojisCollection
+        case ticketTable
     }
 
     private func makeExamplesSectionDataSource() -> TableViewDiffableSectionDataSource<Example> {
@@ -45,6 +46,9 @@ class ViewController: UIViewController, UITableViewDelegate {
             switch item {
             case .emojisCollection:
                 let vc = EmojisCollectionViewController()
+                self?.navigationController?.pushViewController(vc, animated: true)
+            case .ticketTable:
+                let vc = TicketTableViewController()
                 self?.navigationController?.pushViewController(vc, animated: true)
             }
         }
