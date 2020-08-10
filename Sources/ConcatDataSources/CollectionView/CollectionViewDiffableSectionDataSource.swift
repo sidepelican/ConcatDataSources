@@ -39,13 +39,6 @@ open class CollectionViewDiffableSectionDataSource<ItemIdentifierType: Hashable>
             return
         }
 
-        if !snapshot.reloadItems.isEmpty {
-            let reloadedItems = snapshot.reloadItems.compactMap { elements.firstIndex(of: $0) }
-            collectionView.performBatchUpdates({
-                collectionView.reloadItems(at: reloadedItems.map { IndexPath(item: $0, section: sectionIndex) })
-            })
-        }
-
         let changeset = newElements.difference(from: elements)
         if !changeset.isEmpty {
             collectionView.performBatchUpdates({
@@ -75,6 +68,13 @@ open class CollectionViewDiffableSectionDataSource<ItemIdentifierType: Hashable>
             })
         } else {
             elements = newElements
+        }
+
+        if !snapshot.reloadItems.isEmpty {
+            let reloadedItems = snapshot.reloadItems.compactMap { elements.firstIndex(of: $0) }
+            collectionView.performBatchUpdates({
+                collectionView.reloadItems(at: reloadedItems.map { IndexPath(item: $0, section: sectionIndex) })
+            })
         }
     }
 

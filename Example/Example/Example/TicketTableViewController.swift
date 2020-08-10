@@ -27,7 +27,7 @@ class TicketTableViewController: UIViewController, UITableViewDelegate {
 
     struct Player: Hashable {
         var name: String
-        var score: Int
+        var score: Int = 0
 
         func hash(into hasher: inout Hasher) {
             hasher.combine(name)
@@ -57,48 +57,47 @@ class TicketTableViewController: UIViewController, UITableViewDelegate {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
             cell.textLabel?.text = item.name
             cell.detailTextLabel?.text = "\(item.score)"
+            cell.selectionStyle = .none
             return cell
         }
+        playerSectionDataSource.titleForHeader = "Score"
 
         let ticketSectionDataSource = TableViewItemSelectableSectionDataSource<Ticket> { tableView, indexPath, item in
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
             cell.textLabel?.text = item.name
-            cell.detailTextLabel?.text = "\(item.point)"
+            cell.detailTextLabel?.text = "Add \(item.point)"
+            cell.selectionStyle = .default
             return cell
         }
+        ticketSectionDataSource.titleForHeader = "Action"
 
         ticketSectionDataSource.didSelectItem = { selectedItem in
-            var snapshot = playerSectionDataSource.snapshot()
-            let newItems = snapshot.items.map { item -> Player in
-                if item.name == selectedItem.name {
-                    var item = item
-                    item.score += selectedItem.point
-                    snapshot.reloadItems([item])
-                    return item
-                }
-
-                return item
+            var newItems = playerSectionDataSource.snapshot().items
+            if let index = newItems.firstIndex(where: { $0.name == selectedItem.name }) {
+                newItems[index].score += selectedItem.point
             }
-            snapshot.deleteAll()
+
+            var snapshot = playerSectionDataSource.emptySnapshot()
             snapshot.append(newItems.sorted(by: { $0.score > $1.score }))
+            snapshot.reloadItems([.init(name: selectedItem.name)])
             playerSectionDataSource.apply(snapshot)
         }
 
         var ticketsSnapshot = ticketSectionDataSource.emptySnapshot()
         ticketsSnapshot.append([
-            Ticket(name: "A", point: Int.random(in: 0...10)),
-            Ticket(name: "B", point: Int.random(in: 0...10)),
-            Ticket(name: "C", point: Int.random(in: 0...10)),
-            Ticket(name: "D", point: Int.random(in: 0...10)),
+            Ticket(name: "A", point: Int.random(in: 2...7)),
+            Ticket(name: "B", point: Int.random(in: 2...7)),
+            Ticket(name: "C", point: Int.random(in: 2...7)),
+            Ticket(name: "D", point: Int.random(in: 2...7)),
         ])
         ticketSectionDataSource.apply(ticketsSnapshot)
 
         var playersSnapshot = playerSectionDataSource.emptySnapshot()
         playersSnapshot.append([
-            Player(name: "A", score: 0),
-            Player(name: "B", score: 0),
-            Player(name: "C", score: 0),
-            Player(name: "D", score: 0),
+            Player(name: "A"),
+            Player(name: "B"),
+            Player(name: "C"),
+            Player(name: "D"),
         ])
         playerSectionDataSource.apply(playersSnapshot)
 

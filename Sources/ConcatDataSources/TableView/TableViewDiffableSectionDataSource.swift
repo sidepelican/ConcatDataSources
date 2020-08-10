@@ -41,13 +41,6 @@ open class TableViewDiffableSectionDataSource<ItemIdentifierType: Hashable>: NSO
             return
         }
 
-        if !snapshot.reloadItems.isEmpty {
-            let reloadedItems = snapshot.reloadItems.compactMap { elements.firstIndex(of: $0) }
-            tableView.performBatchUpdates({
-                tableView.reloadRows(at: reloadedItems.map { IndexPath(item: $0, section: sectionIndex) }, with: defaultRowAnimation)
-            })
-        }
-
         let changeset = newElements.difference(from: elements)
         if !changeset.isEmpty {
             tableView.performBatchUpdates({
@@ -77,6 +70,13 @@ open class TableViewDiffableSectionDataSource<ItemIdentifierType: Hashable>: NSO
             })
         } else {
             elements = newElements
+        }
+
+        if !snapshot.reloadItems.isEmpty {
+            let reloadedItems = snapshot.reloadItems.compactMap { elements.firstIndex(of: $0) }
+            tableView.performBatchUpdates({
+                tableView.reloadRows(at: reloadedItems.map { IndexPath(item: $0, section: sectionIndex) }, with: defaultRowAnimation)
+            })
         }
     }
 
