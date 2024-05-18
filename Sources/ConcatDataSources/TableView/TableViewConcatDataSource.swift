@@ -14,7 +14,9 @@ open class TableViewConcatDataSource: NSObject, UITableViewDataSource {
 
     open func apply(
         _ snapshot: ConcatDataSourceTableSectionsSnapshot,
-        animatingDifferences: Bool = true,
+        deleteSectionsAnimation: UITableView.RowAnimation? = nil,
+        insertSectionsAnimation: UITableView.RowAnimation? = nil,
+        reloadSectionsAnimation: UITableView.RowAnimation? = nil,
         completion: (() -> Void)? = nil
     ) {
         let newElements = snapshot.elements
@@ -26,7 +28,6 @@ open class TableViewConcatDataSource: NSObject, UITableViewDataSource {
         }
 
         CATransaction.begin()
-        CATransaction.setDisableActions(!animatingDifferences)
         CATransaction.setCompletionBlock(completion)
         defer {
             CATransaction.commit()
@@ -42,7 +43,7 @@ open class TableViewConcatDataSource: NSObject, UITableViewDataSource {
         if !snapshot.reloadItems.isEmpty {
             let reloadedSections = IndexSet(snapshot.reloadItems.compactMap { item in children.firstIndex(where: { $0 === item }) })
             tableView.performBatchUpdates({
-                tableView.reloadSections(reloadedSections, with: defaultRowAnimation)
+                tableView.reloadSections(reloadedSections, with: reloadSectionsAnimation ?? defaultRowAnimation)
             })
         }
 
@@ -67,8 +68,8 @@ open class TableViewConcatDataSource: NSObject, UITableViewDataSource {
                         }
                     }
                 }
-                tableView.insertSections(insertedSections, with: defaultRowAnimation)
-                tableView.deleteSections(removedSections, with: defaultRowAnimation)
+                tableView.insertSections(insertedSections, with: insertSectionsAnimation ?? defaultRowAnimation)
+                tableView.deleteSections(removedSections, with: deleteSectionsAnimation ?? defaultRowAnimation)
                 movedSections.forEach { from, to in
                     tableView.moveSection(from, toSection: to)
                 }

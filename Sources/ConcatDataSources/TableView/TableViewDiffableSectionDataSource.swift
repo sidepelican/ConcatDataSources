@@ -16,9 +16,14 @@ open class TableViewDiffableSectionDataSource<ItemIdentifierType: Hashable>: NSO
         self.cellProvider = cellProvider
     }
 
-    open func apply(_ snapshot: ConcatDataSourceDiffableSectionSnapshot<ItemIdentifierType>,
-               animatingDifferences: Bool = true,
-               completion: (() -> Void)? = nil) {
+    open func apply(
+        _ snapshot: ConcatDataSourceDiffableSectionSnapshot<ItemIdentifierType>,
+        animatingDifferences: Bool = true,
+        deleteRowsAnimation: UITableView.RowAnimation? = nil,
+        insertRowsAnimation: UITableView.RowAnimation? = nil,
+        reloadRowsAnimation: UITableView.RowAnimation? = nil,
+        completion: (() -> Void)? = nil
+    ) {
         let newElements = snapshot.elements
         guard let parentDataSource = parentDataSource,
               let tableView = parentDataSource.tableView,
@@ -30,16 +35,6 @@ open class TableViewDiffableSectionDataSource<ItemIdentifierType: Hashable>: NSO
         CATransaction.begin()
         CATransaction.setCompletionBlock(completion)
         CATransaction.setDisableActions(!animatingDifferences)
-        defer {
-            CATransaction.commit()
-        }
-
-        guard #available(iOS 13, *) else {
-            // diffing not supported.
-            elements = newElements
-            tableView.reloadData()
-            return
-        }
 
         let changeset = newElements.difference(from: elements)
         if !changeset.isEmpty {
@@ -62,8 +57,8 @@ open class TableViewDiffableSectionDataSource<ItemIdentifierType: Hashable>: NSO
                         }
                     }
                 }
-                tableView.insertRows(at: insertedItems.map { IndexPath(item: $0, section: sectionIndex) }, with: defaultRowAnimation)
-                tableView.deleteRows(at: removedItems.map { IndexPath(item: $0, section: sectionIndex) }, with: defaultRowAnimation)
+                tableView.insertRows(at: insertedItems.map { IndexPath(item: $0, section: sectionIndex) }, with: insertRowsAnimation ?? defaultRowAnimation)
+                tableView.deleteRows(at: removedItems.map { IndexPath(item: $0, section: sectionIndex) }, with: deleteRowsAnimation ?? defaultRowAnimation)
                 movedItems.forEach { from, to in
                     tableView.moveRow(at: IndexPath(item: from, section: sectionIndex), to: IndexPath(item: to, section: sectionIndex))
                 }
@@ -72,10 +67,12 @@ open class TableViewDiffableSectionDataSource<ItemIdentifierType: Hashable>: NSO
             elements = newElements
         }
 
+        CATransaction.commit()
+
         if !snapshot.reloadItems.isEmpty {
             let reloadedItems = snapshot.reloadItems.compactMap { elements.firstIndex(of: $0) }
             tableView.performBatchUpdates({
-                tableView.reloadRows(at: reloadedItems.map { IndexPath(item: $0, section: sectionIndex) }, with: defaultRowAnimation)
+                tableView.reloadRows(at: reloadedItems.map { IndexPath(item: $0, section: sectionIndex) }, with: reloadRowsAnimation ?? defaultRowAnimation)
             })
         }
     }

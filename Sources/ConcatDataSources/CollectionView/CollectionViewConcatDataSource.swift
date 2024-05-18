@@ -30,7 +30,7 @@ open class CollectionViewConcatDataSource: NSObject, UICollectionViewDataSource 
             CATransaction.commit()
         }
 
-        guard #available(iOS 13, *), let _ = collectionView.window else {
+        guard let _ = collectionView.window else {
             // diffing not supported.
             children = newElements
             collectionView.reloadData()

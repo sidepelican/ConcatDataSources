@@ -14,9 +14,12 @@ open class CollectionViewDiffableSectionDataSource<ItemIdentifierType: Hashable>
         self.cellProvider = cellProvider
     }
 
-    open func apply(_ snapshot: ConcatDataSourceDiffableSectionSnapshot<ItemIdentifierType>,
-               animatingDifferences: Bool = true,
-               completion: (() -> Void)? = nil) {
+    open func apply(
+        _ snapshot: ConcatDataSourceDiffableSectionSnapshot<ItemIdentifierType>,
+        animatingDifferences: Bool = true,
+        animatingReloads: Bool = true,
+        completion: (() -> Void)? = nil
+    ) {
         let newElements = snapshot.elements
         guard let parentDataSource = parentDataSource,
               let collectionView = parentDataSource.collectionView,
@@ -28,16 +31,6 @@ open class CollectionViewDiffableSectionDataSource<ItemIdentifierType: Hashable>
         CATransaction.begin()
         CATransaction.setCompletionBlock(completion)
         CATransaction.setDisableActions(!animatingDifferences)
-        defer {
-            CATransaction.commit()
-        }
-
-        guard #available(iOS 13, *) else {
-            // diffing not supported.
-            elements = newElements
-            collectionView.reloadData()
-            return
-        }
 
         let changeset = newElements.difference(from: elements)
         if !changeset.isEmpty {
@@ -70,11 +63,18 @@ open class CollectionViewDiffableSectionDataSource<ItemIdentifierType: Hashable>
             elements = newElements
         }
 
+        CATransaction.commit()
+
         if !snapshot.reloadItems.isEmpty {
+            CATransaction.begin()
+            CATransaction.setDisableActions(!animatingReloads)
+
             let reloadedItems = snapshot.reloadItems.compactMap { elements.firstIndex(of: $0) }
             collectionView.performBatchUpdates({
                 collectionView.reloadItems(at: reloadedItems.map { IndexPath(item: $0, section: sectionIndex) })
             })
+
+            CATransaction.commit()
         }
     }
 
