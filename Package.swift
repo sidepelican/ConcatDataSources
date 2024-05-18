@@ -1,22 +1,16 @@
-// swift-tools-version:5.2
+// swift-tools-version:5.10
 
 import PackageDescription
 
 let package = Package(
     name: "ConcatDataSources",
     products: [
-        .library(
-            name: "ConcatDataSources",
-            targets: ["ConcatDataSources"]),
-    ],
-    dependencies: [
+        .library(name: "ConcatDataSources", targets: ["ConcatDataSources"]),
     ],
     targets: [
         .target(
             name: "ConcatDataSources",
-            dependencies: []),
-        .testTarget(
-            name: "ConcatDataSourcesTests",
-            dependencies: ["ConcatDataSources"]),
+            dependencies: []
+        ),
     ]
 )
