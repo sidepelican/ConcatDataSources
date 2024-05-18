@@ -4,13 +4,17 @@ import PackageDescription
 
 let package = Package(
     name: "ConcatDataSources",
+    platforms: [.iOS(.v16)],
     products: [
         .library(name: "ConcatDataSources", targets: ["ConcatDataSources"]),
     ],
     targets: [
         .target(
             name: "ConcatDataSources",
-            dependencies: []
+            dependencies: [],
+            swiftSettings: [
+                .enableExperimentalFeature("StrictConcurrency=complete"),
+            ]
         ),
     ]
 )

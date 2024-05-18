@@ -1,6 +1,6 @@
 import UIKit
 
-public protocol CollectionViewSectionDataSource: AnyObject {
+@MainActor public protocol CollectionViewSectionDataSource: AnyObject {
     func setParentDataSource(_ parent: CollectionViewConcatDataSource)
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int

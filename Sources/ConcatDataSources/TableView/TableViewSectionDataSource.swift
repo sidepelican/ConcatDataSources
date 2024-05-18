@@ -1,6 +1,6 @@
 import UIKit
 
-public protocol TableViewSectionDataSource: AnyObject {
+@MainActor public protocol TableViewSectionDataSource: AnyObject {
     func setParentDataSource(_ parent: TableViewConcatDataSource)
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
